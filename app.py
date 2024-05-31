@@ -1,7 +1,7 @@
 import streamlit as st 
 import pandas as pd 
 import plotly.express as px 
-st.set_page_config(page_title = "New Name")
+
 def formatIndex(df):
     df['S/No.'] = range(1, len(df) + 1)
     df = df.set_index('S/No.')
@@ -18,4 +18,7 @@ total_sales_product=df[['Product Name','Sales']]. \
 total_sales_product['Sales']=round(total_sales_product['Sales'],2)
 total_sales_product=formatIndex(total_sales_product)
 st.dataframe(total_sales_product.head(10))
+
+fig=px.bar(total_sales_product,x='Product Name',y='Sales')
+st.plotly_chart(fig,use_container_width=True)
 
